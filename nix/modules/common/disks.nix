@@ -22,7 +22,7 @@ let
 in {
   
   fileSystems = {
-    "/" =    	mkBtrfs  "/dev/laptop/root";
+    "/" =    	mkBtrfs  "dev/disk/by-label/root";
     "/boot" = mkFat   "/dev/disk/by-label/boot";
   };
 
