@@ -43,12 +43,7 @@
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-#  environment.systemPackages = with pkgs; [
-#    wget git curl htop btop hyprland kitty
-#    brightnessctl
-#		upower
-#		qemu
-#    libvirt
-#    bridge-utils
-#  ];
+  environment.systemPackages = with pkgs; [
+    wget git curl htop vim
+  ];
 }
