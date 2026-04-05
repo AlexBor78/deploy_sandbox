@@ -43,9 +43,6 @@
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      tree ayugram-desktop wofi nautilus bibata-cursors lsd
-    ];
   };
 
 	services.tlp = {
