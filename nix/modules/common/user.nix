@@ -9,23 +9,16 @@
     extraGroups = [ "wheel" "networkmanager" "docker" "video" "render" ]; # Enable ‘sudo’ for the user.
   	shell = pkgs.zsh;
     packages = with pkgs; [
-      tree ayugram-desktop wofi nautilus bibata-cursors lsd
-    	fastfetch rofi hyprshot gh
-    	grim slurp
-    	wl-clipboard
+      tree lsd
+    	fastfetch 
 			starship
-			lazygit
 			clang
 			powertop
-			gimp
-			mako
-			swww
 			dmidecode
 		  acpica-tools
 		  msr-tools
 		  uefitool
 		  binwalk
-		  ghidra
 		  p7zip
 		  git
 		  wget
@@ -40,8 +33,6 @@
 
 
 			rsync
-			keepassxc
-
 
 			sing-box
 			jq
