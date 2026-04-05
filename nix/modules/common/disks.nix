@@ -22,7 +22,7 @@ let
 in {
   
   fileSystems = {
-    "/" =    	mkBtrfs  "dev/disk/by-label/root";
+    "/" =    	mkBtrfs { device = "dev/disk/by-label/root"; lvl = "1"; };
     "/boot" = mkFat   "/dev/disk/by-label/boot";
   };
 
