@@ -19,7 +19,7 @@
     set relativenumber
   '';
 
-  # fore vim config
+  # for vim config
   environment.variables.VIMINIT = "source /etc/vimrc";
 
   # terminal settings

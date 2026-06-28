@@ -1,11 +1,11 @@
 # /flake.nix
 {
-  description = "anton server config";
+  description = "deploy dotfiles";
     inputs = {
       nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     };
   
-  outputs = { self, nixpkgs, sops-nix, ... }: 
+  outputs = { self, nixpkgs, ... }: 
   let
     username = "admin";
     dotsroot = toString self;
@@ -22,14 +22,15 @@
 				./nix/hosts/anton
       ];
     };
-    nixosConfigurations.tempate = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.maria = nixpkgs.lib.nixosSystem {
 			inherit system;
       specialArgs = { 
  	      inherit self username;
-   			hostname = "tamplate";
+   			hostname = "maria";
       };
       modules = [
         ./nix/modules/common
+				./nix/hosts/maria
       ];
     };
   };
