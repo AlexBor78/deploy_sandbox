@@ -1,5 +1,5 @@
 # /nix/modules/common/user.nix
-{ config, lib, pkgs, username, zen-browser, ... } : {
+{ config, lib, pkgs, username, ... } : {
 
   # Define a user account.
   users.users.${username} = {
