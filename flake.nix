@@ -2,18 +2,11 @@
 {
   description = "anton server config";
     inputs = {
-      nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-      home-manager = {
-        url = "github:nix-community/home-manager";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-      nixvim = {
-        url = "github:nix-community/nixvim";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
+      nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+      sops-nix.url = "github:Mic92/sops-nix";
     };
   
-  outputs = { self, nixpkgs, home-manager, nixvim, ... }: 
+  outputs = { self, nixpkgs, sops-nix, ... }: 
   let
     username = "admin";
     dotsroot = toString self;
@@ -22,22 +15,14 @@
     nixosConfigurations.anton = nixpkgs.lib.nixosSystem {
 			inherit system;
       specialArgs = { 
- 	      inherit self username nixvim;
+ 	      inherit self username;
    			hostname = "anton";
       };
       modules = [
+        ./nix/modules/common
 				./nix/hosts/anton
-				./nix/modules/common
+        sops-nix.nixosModules.sops
 
-#        home-manager.nixosModules.home-manager {
-#          home-manager.useGlobalPkgs = true;
-#          home-manager.useUserPackages = true;
-#          home-manager.users.${username} = import ./nix/home;
-#          home-manager.extraSpecialArgs = { 
-#            inherit self username dotsroot nixvim tokyonight rofi-theme;
-#						hostname = "x13";
-#          };
-#        }
       ];
     };
   };

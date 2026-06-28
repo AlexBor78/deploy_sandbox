@@ -1,5 +1,4 @@
 # /nix/modules/common/boot.nix
-
 { config, lib, pkgs, ...} : {
 	
   # Bootloader (grub)
@@ -12,17 +11,11 @@
       enable = true;
       efiSupport = true;
       devices = [ "nodev" ];
-      useOSProber = true;
+      useOSProber = false;
     };
   };
 
   boot.kernelParams = [
-#		# enable amd_pstate
-#    "nohz_idle=on"
-#    "processor.ignore_ppc=1"
-#    "acpi_cpufreq.enable_pcc=false"
-#    "amd_pstate=disable"
-
 		# enable zswap (zram)
     "zswap.enabled=1"
     "zswap.compressor=zstd"

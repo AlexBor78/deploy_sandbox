@@ -1,49 +1,36 @@
 # /nix/modules/common/user.nix
-
 { config, lib, pkgs, username, zen-browser, ... } : {
 
-	programs.zsh.enable = true;
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account.
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" "render" ]; # Enable ‘sudo’ for the user.
-  	shell = pkgs.zsh;
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    shell = pkgs.bash;
     packages = with pkgs; [
-      tree lsd
-    	fastfetch 
-			starship
-			clang
-			powertop
-			dmidecode
-		  acpica-tools
-		  msr-tools
-		  uefitool
-		  binwalk
-		  p7zip
-		  git
-		  wget
-		  curl
-		  grub2
-		  dosfstools
-		  flashrom
-			ntfs3g
-			docker
-
-
-			rsync
-
-			sing-box
-			jq
-			wireguard-tools
-#			ghidra ida-free
+    # usless placeholders
+    	powertop
+    	dmidecode
+    	p7zip
     ];
   };
 
-	hardware.cpu.x86.msr.settings.allow-writes = "on";
+#  hardware.cpu.x86.msr.settings.allow-writes = "on";
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    wget git curl htop vim
+
+    # basic utils
+    wget curl 
+    htop tree jq
+    git vim tmux
+
+    #infra stuff
+    wireguard-tools # vpn
+    sops age # secretes manager
+    cryptsetup btrfs-progs # disks
+
+    # deploy utils
+    docker
   ];
 }
