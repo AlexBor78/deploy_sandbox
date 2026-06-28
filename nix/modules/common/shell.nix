@@ -26,17 +26,5 @@
   environment.sessionVariables = {
     TERM = "xterm-256color";
   };
-  
-#  programs.bash.interactiveShellInit = ''
-#    if [[ -z "$TMUX" && $- == *i* ]]; then
-#      exec tmux new-session -A -s main
-#    fi
-#  '';
-
-#  doesn't work :(
-#  environment.shellAliases = {
-#    rebuild = "sudo nixos-rebuild switch --flake /home/admin/deploy_sandbox/#${hostname}";
-#  };
-
 }
 

@@ -3,7 +3,6 @@
   description = "anton server config";
     inputs = {
       nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-      sops-nix.url = "github:Mic92/sops-nix";
     };
   
   outputs = { self, nixpkgs, sops-nix, ... }: 
@@ -21,8 +20,16 @@
       modules = [
         ./nix/modules/common
 				./nix/hosts/anton
-        sops-nix.nixosModules.sops
-
+      ];
+    };
+    nixosConfigurations.tempate = nixpkgs.lib.nixosSystem {
+			inherit system;
+      specialArgs = { 
+ 	      inherit self username;
+   			hostname = "tamplate";
+      };
+      modules = [
+        ./nix/modules/common
       ];
     };
   };

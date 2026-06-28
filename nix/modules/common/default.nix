@@ -5,18 +5,11 @@
   system.stateVersion = "25.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-	imports = [
-		./boot.nix
-		./network.nix
-		./services.nix
-		./user.nix
-		./shell.nix
-	];
 
 	# paltform
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  # Use latest kernel.
+  # kernel version.
   boot.kernelPackages = pkgs.linuxPackages_6_6;
 
   # microcode updates
@@ -27,4 +20,12 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
+
+	imports = [
+		./boot.nix
+		./network.nix
+		./services.nix
+		./user.nix
+		./shell.nix
+	];
 }
