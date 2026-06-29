@@ -1,6 +1,30 @@
 # /nix/modules/common/shell.nix
 
-{ config, pkgs, lib, theme, hostname, dotsroot, ... } : {
+{ config, pkgs, lib, theme, hostname, dotsroot, username, ... } : {
+  # terminal settings
+  environment.sessionVariables = {
+    TERM = "xterm-256color";
+    EDITOR = "vim";
+  };
+
+  programs.ssh = {
+  startAgent = true;
+  
+  # Глобальный конфиг для всех SSH подключений
+  extraConfig = ''
+      AddKeysToAgent yes
+      IdentityFile ~/.ssh/github_key
+    '';
+  };
+
+  programs.bash = {
+    enableCompletion = true;
+    interactiveShellInit = ''
+      alias ll='ls -l'
+      alias lla='ls -la'
+      alias rebuild='sudo nixos-rebuild switch --flake /home/${username}/deploy_sandbox#${hostname}'
+    '';
+  };
 
   programs.vim = {
     enable = true;
@@ -21,10 +45,5 @@
 
   # for vim config
   environment.variables.VIMINIT = "source /etc/vimrc";
-
-  # terminal settings
-  environment.sessionVariables = {
-    TERM = "xterm-256color";
-  };
 }
 
