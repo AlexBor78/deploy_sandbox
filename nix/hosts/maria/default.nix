@@ -1,6 +1,6 @@
 # /nix/hosts/t480/default.nix
 
-{ config, lib, pkgs, modulesPath, ...} : {
+{ config, lib, pkgs, username, ...} : {
 	imports = [
 		./hardware-configuration.nix
     ./network.nix
