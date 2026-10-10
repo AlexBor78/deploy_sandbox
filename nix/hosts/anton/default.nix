@@ -6,6 +6,7 @@
     ./network.nix
     ./disks.nix
     ./ssh.nix
+    ./agent.nix
 	];
 
   # docker dir
@@ -16,7 +17,21 @@
   users.users.${username}.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAVmKG0A3mAahs3zXBW7BSt9Beb8yf6AAyeYvhNod8+L admin@lexa-projects.ru"
   ];
-
+nixpkgs.config.allowUnfree = true;
+  # nvidia & CUDA
+  hardware.graphics.enable = true;
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;  # для сервера
+    open = false;  # проприетарный драйвер (лучше для headless)
+    nvidiaSettings = false;  # не нужно без GUI
+  };
+  services.xserver.videoDrivers = [ "nvidia" ];
+  
+  # nvidia-smi и базовые утилиты
+  environment.systemPackages = with pkgs; [
+    nvidia-vaapi-driver
+  ];
 
   # sops-nix
 #  sops = {

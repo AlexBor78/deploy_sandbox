@@ -3,7 +3,7 @@
 { config, lib, pkgs, ... } : {
   users.users.agent = {
     isNormalUser = true;
-    extraGroups = [ ];
+    extraGroups = [ "docker" ];
     shell = pkgs.bash;
     packages = with pkgs; [
     # usless placeholders
@@ -51,5 +51,5 @@
         sqlite
         bc
     ];
-  }
+  };
 }
