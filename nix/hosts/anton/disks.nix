@@ -1,6 +1,5 @@
-# /nix/moduels/common/disks.nix
-{ config, lib, pkgs, ... }:
-{
+# /nix/hosts/anton/disks.nix
+{ ... } : {
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/SSD";
