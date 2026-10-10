@@ -8,13 +8,11 @@
   };
 
   programs.ssh = {
-  startAgent = true;
-  
-  # Глобальный конфиг для всех SSH подключений
-  extraConfig = ''
-      AddKeysToAgent yes
-      IdentityFile ~/.ssh/github_key
-    '';
+		startAgent = true;
+		extraConfig = ''
+				AddKeysToAgent yes
+				IdentityFile ~/.ssh/github_key
+			'';
   };
 
   programs.bash = {
@@ -32,18 +30,17 @@
   };
 
   # vim config
-  environment.etc."vimrc".text = ''
-    syntax on
-    filetype plugin indent on
-    set tabstop=2
-    set shiftwidth=2
-    set softtabstop=2
-    set expandtab
-    set number
-    set relativenumber
-  '';
-
-  # for vim config
-  environment.variables.VIMINIT = "source /etc/vimrc";
+	environment = {
+		variables.VIMINIT = "source /etc/vimrc";
+		etc."vimrc".text = ''
+			syntax on
+			filetype plugin indent on
+			set tabstop=2
+			set shiftwidth=2
+			set softtabstop=2
+			set expandtab
+			set number
+			set relativenumber
+		'';
+	};
 }
-

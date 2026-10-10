@@ -8,6 +8,12 @@
 #    ./ssh.nix
 	];
 
+	boot.loader.grub = {
+		enable = true;
+		device = "/dev/vda";   # MBR install
+		efiSupport = false;
+	};
+
 	documentation.nixos.enable = false;
   documentation.man.enable = false;
 

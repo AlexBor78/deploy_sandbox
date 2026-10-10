@@ -8,7 +8,6 @@
     shell = pkgs.bash;
     packages = with pkgs; [
     # usless placeholders
-    	powertop
     	dmidecode
 			fastfetch
     ];
@@ -30,9 +29,5 @@
     wireguard-tools # vpn
     sops age # secretes manager
     cryptsetup btrfs-progs # disks
-
-    # deploy utils
-      #docker
-    docker_29
   ];
 }
