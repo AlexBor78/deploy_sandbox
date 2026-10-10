@@ -6,11 +6,16 @@
   boot.initrd.availableKernelModules = [ "virtio_net" "virtio_pci" "virtio_scsi" "sd_mod" ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/PASTE-UUID-HERE";
+    device = "/dev/disk/by-label/cloudimg-rootfs";
     fsType = "ext4";
   };
 
-  swapDevices = [ ];
+  # real swap — 473MB RAM is even tighter than expected
+  swapDevices = [ { device = "/swapfile"; size = 2048; } ];
 
-  boot.loader.grub.device = "/dev/vda";   # or /dev/sda — see below
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/sda";
+    efiSupport = false;
+  };
 }
