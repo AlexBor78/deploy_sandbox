@@ -10,7 +10,7 @@
     # usless placeholders
     	powertop
     	dmidecode
-    	p7zip
+			fastfetch
     ];
   };
 
@@ -24,6 +24,7 @@
     wget curl 
     htop tree jq
     git vim tmux
+		p7zip
 
     #infra stuff
     wireguard-tools # vpn

@@ -7,10 +7,7 @@
 
   # mirrors
   nix.settings = {
-    # Отключаем скачивание мусорного registry (убирает половину таймаутов)
     flake-registry = ""; 
-    
-    # Добавляем зеркала (Yandex и другие)
     substituters = [
       "https://mirror.yandex.ru/nixos"
       "https://cache.nixos.org"

@@ -18,7 +18,7 @@
   };
 
   programs.bash = {
-    enableCompletion = true;
+    completion.enable = true;
     interactiveShellInit = ''
       alias ll='ls -l'
       alias lla='ls -la'

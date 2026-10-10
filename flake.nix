@@ -9,29 +9,21 @@
   let
     username = "admin";
     dotsroot = toString self;
-    system = "x86_64-linux";
+		mkSystem = hostname: nixpkgs.lib.nixosSystem {
+			system = "x86_64-linux";
+			specialArgs = { 
+				inherit self hostname username dotsroot;
+			};
+			modules = [
+				{ nixpkgs.config.allowUnfree = true; }
+				./nix/hosts/${hostname}
+				./nix/modules/common
+			];
+		};
+
   in {
-    nixosConfigurations.anton = nixpkgs.lib.nixosSystem {
-			inherit system;
-      specialArgs = { 
- 	      inherit self username;
-   			hostname = "anton";
-      };
-      modules = [
-        ./nix/modules/common
-				./nix/hosts/anton
-      ];
-    };
-    nixosConfigurations.maria = nixpkgs.lib.nixosSystem {
-			inherit system;
-      specialArgs = { 
- 	      inherit self username;
-   			hostname = "maria";
-      };
-      modules = [
-        ./nix/modules/common
-				./nix/hosts/maria
-      ];
-    };
+    nixosConfigurations.anton = mkSystem "anton";
+    nixosConfigurations.maria = mkSystem "maria";
+    nixosConfigurations.vds-ru1 = mkSystem "vds-ru1";
   };
 }

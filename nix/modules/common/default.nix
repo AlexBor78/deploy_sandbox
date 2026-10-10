@@ -1,5 +1,5 @@
 # /nix/modules/common/default.nix
-{ config, lib, pkgs, username, dotsroot, ... } : {
+{ config, lib, pkgs, ... } : {
 
 	# Don't change
   system.stateVersion = "25.11";
@@ -14,10 +14,7 @@
   # microcode updates
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
-  # Set your time zone.
   time.timeZone = "Europe/Moscow";
 
 	imports = [
