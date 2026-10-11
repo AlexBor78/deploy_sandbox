@@ -23,7 +23,7 @@
 	zramSwap.enable = true;
 	imports = [
 		./network.nix
-		./user.nix
+		./pkgs.nix
 		./shell.nix
 	];
 
