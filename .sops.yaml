@@ -1,0 +1,11 @@
+keys:
+  - &vds-ru1 age1v7m39reuawzu56wkztjf75d40p869nrxzankkrzlk2mmycl4ufeqh67xlh
+  - &anton age1v4k5ukanapxd6m2xk3hcwe7tks3qug9gj2sk99492n3pmcmwgfnsr0lt96
+  - &maria age1cwmvfgs3r4j3nxt0renvtcfz704srxgf5ef4e4c7z8g5qysxksqsk9kss6
+creation_rules:
+  - path_regex: secrets/vds-ru1/.*\.yaml$
+    age: [*vds-ru1]
+  - path_regex: secrets/anton/.*\.yaml$
+    age: [*anton]
+  - path_regex: secrets/maria/.*\.yaml$
+    age: [*maria]

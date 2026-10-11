@@ -2,8 +2,12 @@
 {
   description = "deploy dotfiles";
 	inputs = {
-		nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+		nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 		lexalib.url = "github:AlexBor78/nix-lexalib";
+		sops-nix = {
+			url = "github:Mic92/sops-nix";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
   outputs = { self, nixpkgs, sops-nix, lexalib, ... }: 

@@ -1,5 +1,5 @@
 # /nix/modules/common/default.nix
-{ config, lib, pkgs, ... } : {
+{ config, lib, pkgs, dotsroot, hostname, ... } : {
 
 	# Don't change
   system.stateVersion = "25.11";
@@ -16,6 +16,20 @@
   # microcode updates
 	# TODO: move to per-host
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+
+	sops = {
+		age.keyFile = "/var/lib/sops-nix/key.txt";
+		age.generateKey = true;
+		defaultSopsFile = "${dotsroot}/secrets/${hostname}/default.yaml";
+		secrets = {
+			default = {
+				path = "/home/admin/.ssh/default";
+				owner = "admin";
+				mode = "0600";
+			};
+		};
+	};
 
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Moscow";

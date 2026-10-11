@@ -13,6 +13,9 @@
     git vim tmux
 		zip unzip
 
+		# sops
+		age sops
+
     #infra stuff
     wireguard-tools
     #sops age # secretes manager

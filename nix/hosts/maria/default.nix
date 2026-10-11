@@ -1,5 +1,3 @@
-# /nix/hosts/t480/default.nix
-
 { lexalib, ...} : {
 	imports = [
 		./hardware-configuration.nix
@@ -21,7 +19,6 @@
       useOSProber = false;
     };
   };
-
 
   nix.settings.trusted-users = [ "root" "admin" ];
   users.users.admin.openssh.authorizedKeys.keys = [

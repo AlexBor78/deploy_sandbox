@@ -18,16 +18,16 @@
 **DONE**: 1. deploy nixos builder on main infra
 **DONE**: 2. rent new vds
 **DONE**: 3. install nixos on new vds (using builder)
-4. secrets refactor & re-setup
-    - [X] generate key for accesing every host from laptop, remove old keys
-    - [ ] generate key on every host
-    - [~] add to sops (each host secrets using it's own sops key)
+**DONE**: 4. secrets refactor & re-setup
+**DONE**:     - [X] generate key for accesing every host from laptop, remove old keys
+**DONE**:     - [X] generate key on every host
+**DONE**:     - [X] add to sops (each host secrets using it's own sops key)
 
-5. basic configure new VDS
+5. pipeline 
+    - CI/CD
+6. basic configure new VDS
     - Headscale
     - nginx
-6. pipeline 
-    - CI/CD
 
 ### Stage 2. Preparations
 1. fully configure VDS;
