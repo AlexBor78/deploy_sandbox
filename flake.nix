@@ -29,8 +29,10 @@
 			];
 		};
   in {
-    nixosConfigurations.anton = mkSystem "anton";
-    nixosConfigurations.maria = mkSystem "maria";
-    nixosConfigurations.vds-ru1 = mkSystem "vds-ru1";
+    nixosConfigurations = {
+    	anton = mkSystem "anton";
+    	maria = mkSystem "maria";
+    	vds-ru1 = mkSystem "vds-ru1";
+		};
   };
 }
