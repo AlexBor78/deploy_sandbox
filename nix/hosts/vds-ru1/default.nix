@@ -47,5 +47,10 @@
 		lexalib.infra.alex-laptop.public-ssh-keys.to-vds-ru1
   ];
 
+	# TEMPORALLY
+  users.users.root.openssh.authorizedKeys.keys = [
+		lexalib.infra.alex-laptop.public-ssh-keys.to-vds-ru1
+  ];
+
 }
 
