@@ -43,8 +43,9 @@
 	#virtualisation.docker.enable = true;
 
 	# using my key
-  users.users.${username}.openssh.authorizedKeys.keys = [
+  users.users.admin.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAVmKG0A3mAahs3zXBW7BSt9Beb8yf6AAyeYvhNod8+L admin@lexa-projects.ru"
+		"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH8JTAx0ILgIYmj7Vql75ocUjLnircF4H+aTso5kSwrD alex laptop -> vds-ru1"
   ];
 
 }

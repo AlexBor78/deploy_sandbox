@@ -23,8 +23,10 @@
   };
 
 
-  users.users.${username}.openssh.authorizedKeys.keys = [
+  nix.settings.trusted-users = [ "root" "admin" ];
+  users.users.admin.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAVmKG0A3mAahs3zXBW7BSt9Beb8yf6AAyeYvhNod8+L admin@lexa-projects.ru"
+		"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEbgM2A1njcwmFMSJhE99yY6qcJeWTd6DUAuI84h97vH alex laptop -> maria"
   ];
 
   # docker dir
