@@ -7,10 +7,11 @@
     
     peers = [
       {
+        # vds key
         publicKey = "wJ0ynClXDC8OVsGpy/cgCpMmJAH8QDHrUK0PNoMJSn0=";
         endpoint = "188.68.223.213:51820";
         
-        allowedIPs = [ "10.0.0.0/24" ];
+        allowedIPs = [ "10.0.0.0/24" "10.0.1.0/24" ];
         persistentKeepalive = 25;
       }
     ];
