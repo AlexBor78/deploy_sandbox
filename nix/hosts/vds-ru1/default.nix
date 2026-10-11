@@ -44,7 +44,7 @@
 
 	# using my key
   users.users.admin.openssh.authorizedKeys.keys = [
-		lexalib.ssh_keys.public.vds_ru1
+		lexalib.infra.alex-laptop.public-ssh-keys.to-vds-ru1
   ];
 
 }

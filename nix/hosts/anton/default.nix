@@ -12,7 +12,7 @@
   nix.settings.trusted-users = [ "root" "admin" ];
   users.users.admin.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAVmKG0A3mAahs3zXBW7BSt9Beb8yf6AAyeYvhNod8+L admin@lexa-projects.ru"
-		lexalib.ssh_keys.public.anton
+		lexalib.infra.alex-laptop.public-ssh-keys.to-anton
   ];
 	
   # Bootloader (grub)
