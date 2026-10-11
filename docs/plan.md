@@ -19,9 +19,9 @@
 **DONE**: 2. rent new vds
 **DONE**: 3. install nixos on new vds (using builder)
 4. secrets refactor & re-setup
-    - [ ] generate key for accesing every host from laptop, remove old keys
+    - [X] generate key for accesing every host from laptop, remove old keys
     - [ ] generate key on every host
-    - [ ] add to sops (each host secrets using it's own sops key)
+    - [~] add to sops (each host secrets using it's own sops key)
 
 5. basic configure new VDS
     - Headscale
