@@ -24,7 +24,9 @@
 **DONE**:     - [X] add to sops (each host secrets using it's own sops key)
 
 5. CI/CD pipeline 
-    - deploy-rs
+    - [X] deploy-rs
+    - [ ] builder on infra
+    - [ ] git hook on builder
 
 6. fully configure new VDS
    migrate to new vds as entry point
