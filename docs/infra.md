@@ -71,7 +71,8 @@
     - CPU: xeon E31230 (V1)
     - GPU: nvidia gt 1030
     - 32ram
-    - 1tb ssd + 1tb hdd
+    - 512gb nvme m2 Samsung PM981 512GB (OEM 970 EVO not for retail) ssd
+    - 1tb hdd
 **Services**:
     - chat
     - cloud
