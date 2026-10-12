@@ -8,16 +8,29 @@
 			url = "github:Mic92/sops-nix";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		deploy-rs ={
+			url = "github:serokell/deploy-rs";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
-  outputs = { self, nixpkgs, sops-nix, lexalib, ... }: 
+  outputs = { self, nixpkgs, sops-nix, lexalib, deploy-rs, ... }: 
   let
-		# todo: remove username
-    username = "admin";
+		username = "admin"; # todo: remove username
+		system = "x86_64-linux";
     dotsroot = toString self;
+		lib = nixpkgs.lib;
+		pkgs = import nixpkgs { inherit system; };
+    deployPkgs = import nixpkgs { # nixpkgs with deploy-rs overlay but force the nixpkgs package
+			inherit system;
+      overlays = [
+        deploy-rs.overlays.default
+        (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+      ];
+    };
+
 		mkSystem = hostname: nixpkgs.lib.nixosSystem {
-			# todo: make system as optional arg, and by default x86_64
-			system = "x86_64-linux";
+			inherit system;
 			specialArgs = { 
 				inherit self lexalib hostname username dotsroot sops-nix;
 			};
@@ -28,11 +41,27 @@
 				./nix/hosts/${hostname}
 			];
 		};
-  in {
-    nixosConfigurations = {
-    	anton = mkSystem "anton";
-    	maria = mkSystem "maria";
-    	vds-ru1 = mkSystem "vds-ru1";
+		mkNode = hostname: {
+			hostname = lexalib.infra.${hostname}.ip;
+			profiles.system = {
+				user = "admin";
+				path = deploy-rs.lib.x86_64-linux.activate.nixos system;
+			};
 		};
+
+		hosts = [
+			"anton"
+			"maria"
+			"vds-ru1"
+		];
+		perHost = lib.genAttrs hosts (name: {
+			system = mkSystem name;
+			node = mkNode name;
+		});
+
+  in {
+		nixosConfigurations = lib.mapAttrs (_: h: h.system) perHost;
+		deploy.nodes        = lib.mapAttrs (_: h: h.node)  perHost;
+		checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }
