@@ -31,17 +31,5 @@
 
   networking.defaultGateway = "188.68.220.1";
   networking.nameservers = [ "188.93.16.19" "188.93.17.19" ];
-
-  # docker dir
-  #systemd.tmpfiles.rules = [ "d /srv 0755 root root -" ];
-	#virtualisation.docker.enable = true;
-
-	# using my key
-  nix.settings.trusted-users = [ "root" "admin" ];
-  users.users.admin.openssh.authorizedKeys.keys = [
-		lexalib.infra.alex-laptop.public-ssh-keys.to-vds-ru1
-  ];
-
-	# sops setup
 }
 

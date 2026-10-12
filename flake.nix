@@ -43,9 +43,12 @@
 		};
 		mkNode = hostname: {
 			hostname = lexalib.infra.${hostname}.ip;
+			sshUser = "deploy";
 			profiles.system = {
-				user = "admin";
-				path = deploy-rs.lib.x86_64-linux.activate.nixos system;
+				sudo = "sudo -u";
+				user = "root";
+				path = deploy-rs.lib.${system}.activate.nixos (mkSystem "${hostname}");
+				sshOpts = [ "-i" "/home/alex/.ssh/deploy-${hostname}" "-o" "IdentitiesOnly=yes" ];
 			};
 		};
 
@@ -62,6 +65,7 @@
   in {
 		nixosConfigurations = lib.mapAttrs (_: h: h.system) perHost;
 		deploy.nodes        = lib.mapAttrs (_: h: h.node)  perHost;
-		checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+		#checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+		checks.x86_64-linux = deploy-rs.lib.x86_64-linux.deployChecks self.deploy;
   };
 }

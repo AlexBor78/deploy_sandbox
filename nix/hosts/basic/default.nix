@@ -1,5 +1,5 @@
 # /nix/modules/common/default.nix
-{ config, lib, pkgs, dotsroot, hostname, ... } : {
+{ config, lib, lexalib, pkgs, dotsroot, hostname, ... } : {
 
 	# Don't change
   system.stateVersion = "25.11";
@@ -17,6 +17,32 @@
 	# TODO: move to per-host
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+	# ssh key
+  nix.settings.trusted-users = [ "root" "admin" "deploy" ];
+  users.users.admin.openssh.authorizedKeys.keys = [ lexalib.infra.alex-laptop.public-ssh-keys."to-${hostname}" ];
+
+	services.openssh.settings = {
+		PasswordAuthentication = false;
+		KbdInteractiveAuthentication = false;
+	};
+
+	security.sudo.extraRules = [
+		{
+			users = [ "deploy" ];
+			runAs = "root";
+			commands = [
+				{ command = "/nix/store/*/activate-rs"; options = [ "NOPASSWD" ]; }
+				{ command = "/run/current-system/sw/bin/rm /tmp/deploy-rs-canary-*"; options = [ "NOPASSWD" ]; }
+			];
+		}
+	];
+	users.groups.deploy = {};
+  users.users.deploy = {
+		isSystemUser = true;
+		group = "deploy";
+		shell = pkgs.bashInteractive;
+		openssh.authorizedKeys.keys = [ lexalib.infra.alex-laptop.public-ssh-keys."deploy-${hostname}" ];
+	};
 
 	sops = {
 		age.keyFile = "/var/lib/sops-nix/key.txt";
