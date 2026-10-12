@@ -23,56 +23,53 @@
 **DONE**:     - [X] generate key on every host
 **DONE**:     - [X] add to sops (each host secrets using it's own sops key)
 
-5. pipeline 
-    - CI/CD
-6. basic configure new VDS
+5. CI/CD pipeline 
+    - deploy-rs
+
+6. fully configure new VDS
+   migrate to new vds as entry point
     - Headscale
     - nginx
-
-### Stage 2. Preparations
-1. fully configure VDS;
-   migrate to new vds as entry point
     - DNS server (.home.arpa)
     - miniserve
     - fail2ban
     - firewall
     - auto certs renew
 
-2. Proxmox VE on maria
-3. security audit 
-4. refactor existed all
+7. security audit 
+8. refactor
+    - nix
     - nginx
-    - other host's configs
     - pages
     
-5. some basic services
+9. some fundamental services
     - analytics, monitors
     - alerts (at least to matrix)
 
-6. use native nix-envs instead of docker for services
+10. use native nix-envs instead of docker for services
     - from day 0 at VDS
     - migrate some services on main infra to nix
 
-7. backups
+11. backups
     - create backups file structure
     - setup basic backups automations
 
-8. prepare sops-nix (or migrate to agenix) for increases
-9. migrate chat.lexa-projects.ru -> chat.lexa-services.ru
+12. migrate chat.lexa-projects.ru -> chat.lexa-services.ru
 
-### Stage 3. Main services itself deployment
-1. Auth service
-2. Cloud services
+### Stage 2. Main services itself deployment
+1. Proxmox VE on *olga* (not final name)
+2. Auth service
+3. Cloud services
     - seafiles (using ~80% of their abilities)
     - ilmmch (to backup phone gallery)
     - something as dropbox (to share files easily and without problems)
     - nextcloud (for calendars, notes, etc)
     - maybe notion for notes (OSS Obsidian alternative)
-3. OCR service
-4. git service
-5. mail server
+4. OCR service
+5. git service
+6. mail server
 
-### Stage 4. Afterward
+### Stage 3. Afterward
 1. rent vds outside russia, install nixos
 2. add to VPN
 3. try to route traffic, try tg bots.
