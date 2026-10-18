@@ -19,17 +19,17 @@
 **DONE**: 2. rent new vds
 **DONE**: 3. install nixos on new vds (using builder)
 **DONE**: 4. secrets refactor & re-setup
-**DONE**:     - [X] generate key for accesing every host from laptop, remove old keys
+**DONE**:     - [X] generate key for accessing every host from laptop, remove old keys
 **DONE**:     - [X] generate key on every host
 **DONE**:     - [X] add to sops (each host secrets using it's own sops key)
 
 5. CI/CD pipeline 
     - [X] deploy-rs
-    - [ ] builder on infra
+    - [X] builder on infra
     - [ ] git hook on builder
 
 6. fully configure new VDS
-   migrate to new vds as entry point
+   migrate to new VDS as entry point
     - Headscale
     - nginx
     - DNS server (.home.arpa)
@@ -38,25 +38,25 @@
     - firewall
     - auto certs renew
 
-7. security audit 
-8. refactor
+7. refactor
+    - security audit
     - nix
     - nginx
     - pages
     
-9. some fundamental services
+8. some fundamental services
     - analytics, monitors
     - alerts (at least to matrix)
 
-10. use native nix-envs instead of docker for services
+9. use native nix-envs instead of docker for services
     - from day 0 at VDS
     - migrate some services on main infra to nix
 
-11. backups
+10. backups
     - create backups file structure
     - setup basic backups automations
 
-12. migrate chat.lexa-projects.ru -> chat.lexa-services.ru
+11. migrate chat.lexa-projects.ru -> chat.lexa-services.ru
 
 ### Stage 2. Main services itself deployment
 1. Proxmox VE on *olga* (not final name)
