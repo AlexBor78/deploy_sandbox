@@ -44,6 +44,10 @@
 		openssh.authorizedKeys.keys = [ lexalib.infra.alex-laptop.public-ssh-keys."deploy-${hostname}" ];
 	};
 
+	services.openssh.hostKeys = lib.mkForce [
+		{ path = "/etc/ssh/ssh_host_ed25519_key"; type = "ed25519"; }
+	];
+
 	sops = {
 		age.keyFile = "/var/lib/sops-nix/key.txt";
 		age.generateKey = true;
@@ -53,6 +57,12 @@
 				path = "/home/admin/.ssh/default";
 				owner = "admin";
 				mode = "0600";
+			};
+			host-key = {
+				key = "default"; # same as default
+				path = "/etc/ssh/ssh_host_ed25519_key";
+				mode = "0400";
+				restartUnits = [ "sshd.service" ];
 			};
 		};
 	};

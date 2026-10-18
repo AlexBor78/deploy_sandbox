@@ -49,6 +49,7 @@
 				user = "root";
 				path = deploy-rs.lib.${system}.activate.nixos (mkSystem "${hostname}");
 				sshOpts = [ "-i" "/home/alex/.ssh/deploy-${hostname}" "-o" "IdentitiesOnly=yes" ];
+				magicRollback = false;
 			};
 		};
 
