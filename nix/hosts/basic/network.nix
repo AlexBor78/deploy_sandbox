@@ -9,7 +9,8 @@
   nix.settings = {
     flake-registry = ""; 
     substituters = [
-      "https://mirror.yandex.ru/nixos"
+      #"https://mirror.yandex.ru/nixos" # dead now
+			"https://mirrors.tuna.tsinghua.edu.cn/nix-store"
       "https://cache.nixos.org"
     ];
   };

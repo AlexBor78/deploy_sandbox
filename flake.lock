@@ -43,11 +43,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1792266412,
-        "narHash": "sha256-6iSI1dTCz3eYroaOFT8Ua/Zyj7qDM6fODDguFUmBf7A=",
+        "lastModified": 1792395752,
+        "narHash": "sha256-Kx3JhWyENfDg6EgpmB9zDtIs/qhhOzC0k9FoUHAtMMQ=",
         "owner": "AlexBor78",
         "repo": "nix-lexalib",
-        "rev": "39353bdeb9609029f4c8d911b825fb540f878d76",
+        "rev": "2b52825447ddf429a48582ec642285f33f7a05a2",
         "type": "github"
       },
       "original": {
